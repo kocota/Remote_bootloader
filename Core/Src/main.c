@@ -379,7 +379,7 @@ int main(void)
   			}
   			else if( bootloader_registers.firmware_correctness_reg == 0 )
   			{
-  				fm25v02_read(2*JUMP_ATTEMPT_REG, &temp_h);
+  				fm25v02_read(2*JUMP_ATTEMPT_REG, &temp_h); // увеличиваем количество попыток перейти в основную программу
   				fm25v02_read(2*JUMP_ATTEMPT_REG+1, &temp_l);
   				temp_jump_attempt = (((uint16_t)temp_h)<<8)|((uint16_t)(temp_l));
   				temp_jump_attempt = temp_jump_attempt + 1;

@@ -8,6 +8,7 @@ extern osMutexId Fm25v02MutexHandle;
 status_register_struct status_registers;
 control_register_struct control_registers;
 bootloader_register_struct bootloader_registers;
+change_boot_register_struct change_boot_registers;
 
 //----функция чтения из памяти регистров статуса--------------------------
 void read_status_registers(void)
@@ -919,6 +920,81 @@ void read_bootloader_registers_no_rtos(void)
 
 }
 //----------------------------------------------------------------
+
+//----Функция чтения из памяти регистров бутлоадера без запуска операционной системы---------------
+
+void read_change_boot_registers(void)
+{
+	uint8_t status_reg_temp_h;
+	uint8_t status_reg_temp_l;
+
+	fm25v02_read(2*CHANGE_BOOT_START_ADDRESS_3_REG, &status_reg_temp_h);
+	fm25v02_read(2*CHANGE_BOOT_START_ADDRESS_3_REG+1, &status_reg_temp_l);
+	change_boot_registers.change_boot_start_address_3_reg = ((((uint16_t)status_reg_temp_h)&0x00FF)<<8)|(((uint16_t)status_reg_temp_l)&0x00FF);
+
+	fm25v02_read(2*CHANGE_BOOT_START_ADDRESS_2_REG, &status_reg_temp_h);
+	fm25v02_read(2*CHANGE_BOOT_START_ADDRESS_2_REG+1, &status_reg_temp_l);
+	change_boot_registers.change_boot_start_address_2_reg = ((((uint16_t)status_reg_temp_h)&0x00FF)<<8)|(((uint16_t)status_reg_temp_l)&0x00FF);
+
+	fm25v02_read(2*CHANGE_BOOT_START_ADDRESS_1_REG, &status_reg_temp_h);
+	fm25v02_read(2*CHANGE_BOOT_START_ADDRESS_1_REG+1, &status_reg_temp_l);
+	change_boot_registers.change_boot_start_address_1_reg = ((((uint16_t)status_reg_temp_h)&0x00FF)<<8)|(((uint16_t)status_reg_temp_l)&0x00FF);
+
+	fm25v02_read(2*CHANGE_BOOT_START_ADDRESS_0_REG, &status_reg_temp_h);
+	fm25v02_read(2*CHANGE_BOOT_START_ADDRESS_0_REG+1, &status_reg_temp_l);
+	change_boot_registers.change_boot_start_address_0_reg = ((((uint16_t)status_reg_temp_h)&0x00FF)<<8)|(((uint16_t)status_reg_temp_l)&0x00FF);
+
+	fm25v02_read(2*CHANGE_BOOT_END_ADDRESS_3_REG, &status_reg_temp_h);
+	fm25v02_read(2*CHANGE_BOOT_END_ADDRESS_3_REG+1, &status_reg_temp_l);
+	change_boot_registers.change_boot_end_address_3_reg = ((((uint16_t)status_reg_temp_h)&0x00FF)<<8)|(((uint16_t)status_reg_temp_l)&0x00FF);
+
+	fm25v02_read(2*CHANGE_BOOT_END_ADDRESS_2_REG, &status_reg_temp_h);
+	fm25v02_read(2*CHANGE_BOOT_END_ADDRESS_2_REG+1, &status_reg_temp_l);
+	change_boot_registers.change_boot_end_address_2_reg = ((((uint16_t)status_reg_temp_h)&0x00FF)<<8)|(((uint16_t)status_reg_temp_l)&0x00FF);
+
+	fm25v02_read(2*CHANGE_BOOT_END_ADDRESS_1_REG, &status_reg_temp_h);
+	fm25v02_read(2*CHANGE_BOOT_END_ADDRESS_1_REG+1, &status_reg_temp_l);
+	change_boot_registers.change_boot_end_address_1_reg = ((((uint16_t)status_reg_temp_h)&0x00FF)<<8)|(((uint16_t)status_reg_temp_l)&0x00FF);
+
+	fm25v02_read(2*CHANGE_BOOT_END_ADDRESS_0_REG, &status_reg_temp_h);
+	fm25v02_read(2*CHANGE_BOOT_END_ADDRESS_0_REG+1, &status_reg_temp_l);
+	change_boot_registers.change_boot_end_address_0_reg = ((((uint16_t)status_reg_temp_h)&0x00FF)<<8)|(((uint16_t)status_reg_temp_l)&0x00FF);
+
+	fm25v02_read(2*CHANGE_BOOT_CRC_HIGH_REG, &status_reg_temp_h);
+	fm25v02_read(2*CHANGE_BOOT_CRC_HIGH_REG+1, &status_reg_temp_l);
+	change_boot_registers.change_boot_crc_high_reg = ((((uint16_t)status_reg_temp_h)&0x00FF)<<8)|(((uint16_t)status_reg_temp_l)&0x00FF);
+
+	fm25v02_read(2*CHANGE_BOOT_CRC_LOW_REG, &status_reg_temp_h);
+	fm25v02_read(2*CHANGE_BOOT_CRC_LOW_REG+1, &status_reg_temp_l);
+	change_boot_registers.change_boot_crc_low_reg = ((((uint16_t)status_reg_temp_h)&0x00FF)<<8)|(((uint16_t)status_reg_temp_l)&0x00FF);
+
+	fm25v02_read(2*CHANGE_BOOT_ADDRESS_TO_WRITE_3_REG, &status_reg_temp_h);
+	fm25v02_read(2*CHANGE_BOOT_ADDRESS_TO_WRITE_3_REG+1, &status_reg_temp_l);
+	change_boot_registers.change_boot_address_to_write_3_reg = ((((uint16_t)status_reg_temp_h)&0x00FF)<<8)|(((uint16_t)status_reg_temp_l)&0x00FF);
+
+	fm25v02_read(2*CHANGE_BOOT_ADDRESS_TO_WRITE_2_REG, &status_reg_temp_h);
+	fm25v02_read(2*CHANGE_BOOT_ADDRESS_TO_WRITE_2_REG+1, &status_reg_temp_l);
+	change_boot_registers.change_boot_address_to_write_2_reg = ((((uint16_t)status_reg_temp_h)&0x00FF)<<8)|(((uint16_t)status_reg_temp_l)&0x00FF);
+
+	fm25v02_read(2*CHANGE_BOOT_ADDRESS_TO_WRITE_1_REG, &status_reg_temp_h);
+	fm25v02_read(2*CHANGE_BOOT_ADDRESS_TO_WRITE_1_REG+1, &status_reg_temp_l);
+	change_boot_registers.change_boot_address_to_write_1_reg = ((((uint16_t)status_reg_temp_h)&0x00FF)<<8)|(((uint16_t)status_reg_temp_l)&0x00FF);
+
+	fm25v02_read(2*CHANGE_BOOT_ADDRESS_TO_WRITE_0_REG, &status_reg_temp_h);
+	fm25v02_read(2*CHANGE_BOOT_ADDRESS_TO_WRITE_0_REG+1, &status_reg_temp_l);
+	change_boot_registers.change_boot_address_to_write_0_reg = ((((uint16_t)status_reg_temp_h)&0x00FF)<<8)|(((uint16_t)status_reg_temp_l)&0x00FF);
+
+	fm25v02_read(2*CHANGE_BOOT_CRC_CORRECTNESS_REG, &status_reg_temp_h);
+	fm25v02_read(2*CHANGE_BOOT_CRC_CORRECTNESS_REG+1, &status_reg_temp_l);
+	change_boot_registers.change_boot_crc_correctness_reg = ((((uint16_t)status_reg_temp_h)&0x00FF)<<8)|(((uint16_t)status_reg_temp_l)&0x00FF);
+
+	fm25v02_read(2*CHANGE_BOOT_WRITE_REG, &status_reg_temp_h);
+	fm25v02_read(2*CHANGE_BOOT_WRITE_REG+1, &status_reg_temp_l);
+	change_boot_registers.change_boot_write_reg = ((((uint16_t)status_reg_temp_h)&0x00FF)<<8)|(((uint16_t)status_reg_temp_l)&0x00FF);
+
+}
+
+//-------------------------------------------------------------------------------------------------
 
 //-----Блок расчета CRC16 для Modbus---------------------------------------------------------------
 

@@ -211,6 +211,27 @@ unsigned int CRC16( unsigned char * pucFrame, unsigned int usLen );
 
 //--------------------------------------------------------
 
+//----описание регистров для смены бутлоадера-------------
+
+#define CHANGE_BOOT_START_ADDRESS_3_REG      0x0000
+#define CHANGE_BOOT_START_ADDRESS_2_REG      0x0001
+#define CHANGE_BOOT_START_ADDRESS_1_REG      0x0002
+#define CHANGE_BOOT_START_ADDRESS_0_REG      0x0003
+#define CHANGE_BOOT_END_ADDRESS_3_REG        0x0004
+#define CHANGE_BOOT_END_ADDRESS_2_REG        0x0005
+#define CHANGE_BOOT_END_ADDRESS_1_REG        0x0006
+#define CHANGE_BOOT_END_ADDRESS_0_REG        0x0007
+#define CHANGE_BOOT_CRC_HIGH_REG             0x0008
+#define CHANGE_BOOT_CRC_LOW_REG              0x0009
+#define CHANGE_BOOT_ADDRESS_TO_WRITE_3_REG   0x000A
+#define CHANGE_BOOT_ADDRESS_TO_WRITE_2_REG   0x000B
+#define CHANGE_BOOT_ADDRESS_TO_WRITE_1_REG   0x000C
+#define CHANGE_BOOT_ADDRESS_TO_WRITE_0_REG   0x000D
+#define CHANGE_BOOT_CRC_CORRECTNESS_REG      0x000E
+#define CHANGE_BOOT_WRITE_REG                0x000F
+
+//--------------------------------------------------------
+
 
 //----биты состояния байта SECURITY_STATUS_REG статус режима охраны------
 
@@ -494,10 +515,37 @@ typedef struct
 } bootloader_register_struct;
 //------------------------------------------------------------------
 
+//----структура переменной регистров смены загрузчика---------------
+
+typedef struct
+{
+
+	uint16_t change_boot_start_address_3_reg;
+	uint16_t change_boot_start_address_2_reg;
+	uint16_t change_boot_start_address_1_reg;
+	uint16_t change_boot_start_address_0_reg;
+	uint16_t change_boot_end_address_3_reg;
+	uint16_t change_boot_end_address_2_reg;
+	uint16_t change_boot_end_address_1_reg;
+	uint16_t change_boot_end_address_0_reg;
+	uint16_t change_boot_crc_high_reg;
+	uint16_t change_boot_crc_low_reg;
+	uint16_t change_boot_address_to_write_3_reg;
+	uint16_t change_boot_address_to_write_2_reg;
+	uint16_t change_boot_address_to_write_1_reg;
+	uint16_t change_boot_address_to_write_0_reg;
+	uint16_t change_boot_crc_correctness_reg;
+	uint16_t change_boot_write_reg;
+
+} change_boot_register_struct;
+
+//------------------------------------------------------------------
+
 void read_status_registers(void);
 void read_control_registers(void);
 void read_bootloader_registers(void);
 void read_bootloader_registers_no_rtos(void);
+void read_change_boot_registers(void);
 
 
 

@@ -36,6 +36,9 @@ uint16_t change_boot_firmeware_crc;
 uint32_t change_boot_address_to_write;
 
 
+uint8_t buffer_packet_data_flash[256];
+uint32_t calculating_packet_flash_crc;
+
 /*
 typedef void (*pFunction) (void);
 pFunction Jump_To_Application;
@@ -50,6 +53,9 @@ void ThreadMainTask(void const * argument)
 	//uint8_t temp_read_h;
 	uint8_t temp_read_l;
 
+	uint8_t temp_reg_h1;
+	uint8_t temp_reg_l1;
+
 	osThreadSuspend(MainTaskHandle); // ждем пока не будут вычитаны регистры и не получен статус фаз А1,А2,В1,В2,С1,С2
 
 	//osMutexWait(Fm25v02MutexHandle, osWaitForever);
@@ -58,23 +64,50 @@ void ThreadMainTask(void const * argument)
 	//bootloader_registers.ready_download_reg = 0x0001;
 	//osMutexRelease(Fm25v02MutexHandle);
 
-	osMutexWait(Fm25v02MutexHandle, osWaitForever);// обнуляем регистр очисти страниц, чтобы при запуске не произошла очистка
-	fm25v02_write(2*CLEAR_PAGE_ON_REG, 0x00);
-	fm25v02_write(2*CLEAR_PAGE_ON_REG+1, 0x00);
-	bootloader_registers.clear_page_on_reg = 0x0000;
+	//----test--------------------------------
+
+	osMutexWait(Fm25v02MutexHandle, osWaitForever);
+
+	fm25v02_read(2*CLEAR_PAGE_ON_REG, &temp_reg_h1);
+	fm25v02_read(2*CLEAR_PAGE_ON_REG+1, &temp_reg_l1);
+	bootloader_registers.clear_page_on_reg = (((uint16_t)temp_reg_h1)<<8)|temp_reg_l1;
+
+	fm25v02_read(2*WRITE_ARRAY_REG, &temp_reg_h1);
+	fm25v02_read(2*WRITE_ARRAY_REG+1, &temp_reg_l1);
+	bootloader_registers.write_array_reg = (((uint16_t)temp_reg_h1)<<8)|temp_reg_l1;
+
+	fm25v02_read(2*READ_ARRAY_REG, &temp_reg_h1);
+	fm25v02_read(2*READ_ARRAY_REG+1, &temp_reg_l1);
+	bootloader_registers.read_array_reg = (((uint16_t)temp_reg_h1)<<8)|temp_reg_l1;
+
 	osMutexRelease(Fm25v02MutexHandle);
 
-	osMutexWait(Fm25v02MutexHandle, osWaitForever);// обнуляем регистр записи в память контроллера, чтобы при запуске не произошла запись
-	fm25v02_write(2*WRITE_ARRAY_REG, 0x00);
-	fm25v02_write(2*WRITE_ARRAY_REG+1, 0x00);
-	bootloader_registers.write_array_reg = 0x0000;
-	osMutexRelease(Fm25v02MutexHandle);
+	//----------------------------------------
 
-	osMutexWait(Fm25v02MutexHandle, osWaitForever);// обнуляем регистр чтения страниц, чтобы при запуске не произошло чтение
-	fm25v02_write(2*READ_ARRAY_REG, 0x00);
-	fm25v02_write(2*READ_ARRAY_REG+1, 0x00);
-	bootloader_registers.read_array_reg = 0x0000;
-	osMutexRelease(Fm25v02MutexHandle);
+	if(bootloader_registers.clear_page_on_reg != 0x0001)
+	{
+		osMutexWait(Fm25v02MutexHandle, osWaitForever);// обнуляем регистр очистки страниц, чтобы при запуске не произошла очистка
+		fm25v02_write(2*CLEAR_PAGE_ON_REG, 0x00);
+		fm25v02_write(2*CLEAR_PAGE_ON_REG+1, 0x00);
+		bootloader_registers.clear_page_on_reg = 0x0000;
+		osMutexRelease(Fm25v02MutexHandle);
+	}
+	if(bootloader_registers.write_array_reg != 0x0001)
+	{
+		osMutexWait(Fm25v02MutexHandle, osWaitForever);// обнуляем регистр записи в память контроллера, чтобы при запуске не произошла запись
+		fm25v02_write(2*WRITE_ARRAY_REG, 0x00);
+		fm25v02_write(2*WRITE_ARRAY_REG+1, 0x00);
+		bootloader_registers.write_array_reg = 0x0000;
+		osMutexRelease(Fm25v02MutexHandle);
+	}
+	if(bootloader_registers.read_array_reg != 0x0001)
+	{
+		osMutexWait(Fm25v02MutexHandle, osWaitForever);// обнуляем регистр чтения страниц, чтобы при запуске не произошло чтение
+		fm25v02_write(2*READ_ARRAY_REG, 0x00);
+		fm25v02_write(2*READ_ARRAY_REG+1, 0x00);
+		bootloader_registers.read_array_reg = 0x0000;
+		osMutexRelease(Fm25v02MutexHandle);
+	}
 
 
 
@@ -84,7 +117,8 @@ void ThreadMainTask(void const * argument)
 		if(bootloader_registers.working_mode_reg == 1) // если включен режим обновления программы
 		{
 
-			if(bootloader_registers.ready_download_reg == 0x0000)
+			//if(bootloader_registers.ready_download_reg == 0x0000)
+			if(bootloader_registers.ready_download_reg != 0x0001)
 			{
 				osMutexWait(Fm25v02MutexHandle, osWaitForever);
 				fm25v02_write(2*READY_DOWNLOAD_REG, 0x00); // устанавливаем регистр готовности к загрузке прошивки
@@ -97,7 +131,39 @@ void ThreadMainTask(void const * argument)
 			{
 				case(1):
 
+					//LED3_TOGGLE();
+					//LED4_TOGGLE();
+					//LED5_TOGGLE();
+
 					//address_to_read_write = ((((uint32_t)(bootloader_registers.address_to_write_high_reg))<<24)&0xFF000000) | ((((uint32_t)(bootloader_registers.address_to_write_2_reg))<<16)&0x00FF0000) | ((((uint32_t)(bootloader_registers.address_to_write_3_reg))<<8)&0x0000FF00) | (((uint32_t)(bootloader_registers.address_to_write_low_reg))&0x000000FF); // получаем переменную адреса для записи данных в память контроллера
+
+					osMutexWait(Fm25v02MutexHandle, osWaitForever);
+
+					fm25v02_read(2*ADDRESS_TO_WRITE_2_REG, &temp_reg_h1);
+					fm25v02_read(2*ADDRESS_TO_WRITE_2_REG+1, &temp_reg_l1);
+					bootloader_registers.address_to_write_2_reg = ((((uint16_t)temp_reg_h1)&0x00FF)<<8)|(((uint16_t)temp_reg_l1)&0x00FF);
+
+					fm25v02_read(2*ADDRESS_TO_WRITE_3_REG, &temp_reg_h1);
+					fm25v02_read(2*ADDRESS_TO_WRITE_3_REG+1, &temp_reg_l1);
+					bootloader_registers.address_to_write_3_reg = ((((uint16_t)temp_reg_h1)&0x00FF)<<8)|(((uint16_t)temp_reg_l1)&0x00FF);
+
+					fm25v02_read(2*ADDRESS_TO_WRITE_HIGH_REG, &temp_reg_h1);
+					fm25v02_read(2*ADDRESS_TO_WRITE_HIGH_REG+1, &temp_reg_l1);
+					bootloader_registers.address_to_write_high_reg = ((((uint16_t)temp_reg_h1)&0x00FF)<<8)|(((uint16_t)temp_reg_l1)&0x00FF);
+
+					fm25v02_read(2*ADDRESS_TO_WRITE_LOW_REG, &temp_reg_h1);
+					fm25v02_read(2*ADDRESS_TO_WRITE_LOW_REG+1, &temp_reg_l1);
+					bootloader_registers.address_to_write_low_reg = ((((uint16_t)temp_reg_h1)&0x00FF)<<8)|(((uint16_t)temp_reg_l1)&0x00FF);
+
+					fm25v02_read(2*PACKET_CRC_HIGH_REG, &temp_reg_h1);
+					fm25v02_read(2*PACKET_CRC_HIGH_REG+1, &temp_reg_l1);
+					bootloader_registers.packet_crc_high_reg = ((((uint16_t)temp_reg_h1)&0x00FF)<<8)|(((uint16_t)temp_reg_l1)&0x00FF);
+
+					fm25v02_read(2*PACKET_CRC_LOW_REG, &temp_reg_h1);
+					fm25v02_read(2*PACKET_CRC_LOW_REG+1, &temp_reg_l1);
+					bootloader_registers.packet_crc_low_reg = ((((uint16_t)temp_reg_h1)&0x00FF)<<8)|(((uint16_t)temp_reg_l1)&0x00FF);
+
+					osMutexRelease(Fm25v02MutexHandle);
 
 					address_to_read_write = ((((uint32_t)(bootloader_registers.address_to_write_2_reg))<<24)&0xFF000000) | ((((uint32_t)(bootloader_registers.address_to_write_3_reg))<<16)&0x00FF0000) | ((((uint32_t)(bootloader_registers.address_to_write_high_reg))<<8)&0x0000FF00) | (((uint32_t)(bootloader_registers.address_to_write_low_reg))&0x000000FF); // получаем переменную адреса для записи данных в память контроллера
 
@@ -118,15 +184,33 @@ void ThreadMainTask(void const * argument)
 					{
 						//osThreadSuspendAll();
 
+						taskENTER_CRITICAL();
+
 						HAL_FLASH_Unlock(); // разблокируем запись памяти контроллера
 						for(uint16_t i=0; i<(bootloader_registers.byte_quantity_reg); i++)
 						{
-							while( HAL_FLASH_Program(FLASH_TYPEPROGRAM_BYTE, address_to_read_write+i, buffer_packet_data[i]) != HAL_OK ) // ничего не делаем пока не выполнится запись в память контроллера
-							{
+							//if( *( (uint32_t*)(address_to_read_write+i) ) == 0xFF) // тестовое услови для проверки значения байта 0xFF перед тем как начать запись
+							//{
+								while( HAL_FLASH_Program(FLASH_TYPEPROGRAM_BYTE, address_to_read_write+i, buffer_packet_data[i]) != HAL_OK ) // ничего не делаем пока не выполнится запись в память контроллера
+								{
 
-							}
+								}
+							//}
+
 						}
 						HAL_FLASH_Lock(); // блокируем запись памяти контроллера
+
+						taskEXIT_CRITICAL();
+
+						for(uint16_t i=0; i<(bootloader_registers.byte_quantity_reg); i++)
+						{
+							buffer_packet_data_flash[i] = *((uint32_t*)(address_to_read_write+i));
+						}
+
+						calculating_packet_flash_crc = CRC16( (unsigned char*)(&buffer_packet_data_flash[0]), (unsigned int)(bootloader_registers.byte_quantity_reg) ); // вычисляем значение контрольной суммы записанных данных в память микроконтроллера
+
+						if( packet_crc == calculating_packet_flash_crc)
+						{
 
 						//osThreadResumeAll();
 
@@ -138,7 +222,17 @@ void ThreadMainTask(void const * argument)
 
 						osMutexRelease(Fm25v02MutexHandle);
 
+						}
+
 					}
+
+				break;
+
+				case(0):
+
+					//LED3_OFF();
+					//LED4_OFF();
+					//LED5_OFF();
 
 				break;
 			}
@@ -147,7 +241,27 @@ void ThreadMainTask(void const * argument)
 			{
 				case(1):
 
-						address_to_read_write = ((((uint32_t)(bootloader_registers.address_to_write_high_reg))<<24)&0xFF000000) | ((((uint32_t)(bootloader_registers.address_to_write_2_reg))<<16)&0x00FF0000) | ((((uint32_t)(bootloader_registers.address_to_write_3_reg))<<8)&0x0000FF00) | (((uint32_t)(bootloader_registers.address_to_write_low_reg))&0x000000FF); // получаем переменную адреса для чтения данных из памяти контроллера
+					osMutexWait(Fm25v02MutexHandle, osWaitForever);
+
+					fm25v02_read(2*ADDRESS_TO_WRITE_2_REG, &temp_reg_h1);
+					fm25v02_read(2*ADDRESS_TO_WRITE_2_REG+1, &temp_reg_l1);
+					bootloader_registers.address_to_write_2_reg = ((((uint16_t)temp_reg_h1)&0x00FF)<<8)|(((uint16_t)temp_reg_l1)&0x00FF);
+
+					fm25v02_read(2*ADDRESS_TO_WRITE_3_REG, &temp_reg_h1);
+					fm25v02_read(2*ADDRESS_TO_WRITE_3_REG+1, &temp_reg_l1);
+					bootloader_registers.address_to_write_3_reg = ((((uint16_t)temp_reg_h1)&0x00FF)<<8)|(((uint16_t)temp_reg_l1)&0x00FF);
+
+					fm25v02_read(2*ADDRESS_TO_WRITE_HIGH_REG, &temp_reg_h1);
+					fm25v02_read(2*ADDRESS_TO_WRITE_HIGH_REG+1, &temp_reg_l1);
+					bootloader_registers.address_to_write_high_reg = ((((uint16_t)temp_reg_h1)&0x00FF)<<8)|(((uint16_t)temp_reg_l1)&0x00FF);
+
+					fm25v02_read(2*ADDRESS_TO_WRITE_LOW_REG, &temp_reg_h1);
+					fm25v02_read(2*ADDRESS_TO_WRITE_LOW_REG+1, &temp_reg_l1);
+					bootloader_registers.address_to_write_low_reg = ((((uint16_t)temp_reg_h1)&0x00FF)<<8)|(((uint16_t)temp_reg_l1)&0x00FF);
+
+					osMutexRelease(Fm25v02MutexHandle);
+
+					address_to_read_write = ((((uint32_t)(bootloader_registers.address_to_write_2_reg))<<24)&0xFF000000) | ((((uint32_t)(bootloader_registers.address_to_write_3_reg))<<16)&0x00FF0000) | ((((uint32_t)(bootloader_registers.address_to_write_high_reg))<<8)&0x0000FF00) | (((uint32_t)(bootloader_registers.address_to_write_low_reg))&0x000000FF); // получаем переменную адреса для чтения данных из памяти контроллера
 
 					for(uint16_t i=0; i<(bootloader_registers.byte_quantity_reg); i++)
 					{
@@ -184,12 +298,20 @@ void ThreadMainTask(void const * argument)
 
 					osMutexRelease(Fm25v02MutexHandle);
 
-					break;
+				break;
 			}
 
 			switch(bootloader_registers.clear_page_on_reg) // очистка указанной страницы памяти контроллера
 			{
 				case(1):
+
+					osMutexWait(Fm25v02MutexHandle, osWaitForever);
+
+					fm25v02_read(2*CLEAR_PAGE_NUMBER_REG, &temp_reg_h1);
+					fm25v02_read(2*CLEAR_PAGE_NUMBER_REG+1, &temp_reg_l1);
+					bootloader_registers.clear_page_number_reg = ((((uint16_t)temp_reg_h1)&0x00FF)<<8)|(((uint16_t)temp_reg_l1)&0x00FF);
+
+					osMutexRelease(Fm25v02MutexHandle);
 
 					erase_init.TypeErase = FLASH_TYPEERASE_SECTORS; // заполняем структуру с параметрами очистки памяти
 					erase_init.VoltageRange = FLASH_VOLTAGE_RANGE_3;
@@ -198,6 +320,7 @@ void ThreadMainTask(void const * argument)
 					erase_init.Banks = 1;
 
 					//osThreadSuspendAll();
+					taskENTER_CRITICAL();
 
 					HAL_FLASH_Unlock(); // разблокируем запись памяти контроллера
 
@@ -208,6 +331,7 @@ void ThreadMainTask(void const * argument)
 
 					HAL_FLASH_Lock(); // блокируем запись памяти контроллера
 
+					taskEXIT_CRITICAL();
 					//osThreadResumeAll();
 
 					if(sector_error != 0xFFFFFFFF) // если произошла ошибка очистки сектора памяти
@@ -215,15 +339,18 @@ void ThreadMainTask(void const * argument)
 						// здесь должен быть обработчик ошибки очистки сектора памяти
 					}
 
-					osMutexWait(Fm25v02MutexHandle, osWaitForever);
+					else if( sector_error == 0xFFFFFFFF ) // если не произошло ошибок памяти, то обнуляем регистр и переменную для стирания
+					{
+						osMutexWait(Fm25v02MutexHandle, osWaitForever);
 
-					fm25v02_write(2*CLEAR_PAGE_ON_REG, 0x00); // обнуляем регистр и переменную записи массива
-					fm25v02_write(2*CLEAR_PAGE_ON_REG+1, 0x00);
-					bootloader_registers.clear_page_on_reg = 0x0000;
+						fm25v02_write(2*CLEAR_PAGE_ON_REG, 0x00); // обнуляем регистр и переменную очистки страницы
+						fm25v02_write(2*CLEAR_PAGE_ON_REG+1, 0x00);
+						bootloader_registers.clear_page_on_reg = 0x0000;
 
-					osMutexRelease(Fm25v02MutexHandle);
+						osMutexRelease(Fm25v02MutexHandle);
+					}
 
-					break;
+				break;
 			}
 
 		}
@@ -231,7 +358,7 @@ void ThreadMainTask(void const * argument)
 		else if(bootloader_registers.working_mode_reg == 0) // если включен режим работы
 		{
 
-			if(bootloader_registers.ready_download_reg == 0x0001)
+			if(bootloader_registers.ready_download_reg != 0x0000)
 			{
 				osMutexWait(Fm25v02MutexHandle, osWaitForever);
 				fm25v02_write(2*READY_DOWNLOAD_REG, 0x00); // сбрасываем регистр готовности к загрузке прошивки
@@ -242,7 +369,8 @@ void ThreadMainTask(void const * argument)
 
 			if(bootloader_registers.jump_attempt_reg < bootloader_registers.max_jump_attempt_reg)
 			{
-
+				osDelay(5000); // добавил задержку для теста, чтобы устройство успело отправить значение регистра номер 289, после записи
+				osMutexWait(Fm25v02MutexHandle, osWaitForever); // ждем освобождение мьютекса записи в память
 				NVIC_SystemReset();
 
 			}
@@ -255,11 +383,13 @@ void ThreadMainTask(void const * argument)
 				fm25v02_write(2*RESET_CONTROL_REG, 0);
 				fm25v02_write(2*RESET_CONTROL_REG+1, 0);
 				osMutexRelease(Fm25v02MutexHandle);
+
+				osMutexWait(Fm25v02MutexHandle, osWaitForever); // ждем освобождение мьютекса записи в память
 				NVIC_SystemReset();
 			break;
 
 		}
-
+		/*
 		switch(change_boot_registers.change_boot_write_reg)
 		{
 			case(1):
@@ -406,6 +536,7 @@ void ThreadMainTask(void const * argument)
 
 			break;
 		}
+		*/
 
 
 

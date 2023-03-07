@@ -96,12 +96,27 @@ uint32_t ApplicationAddress2 = 0x08010000;
 uint32_t calculating_firmware_crc;
 uint32_t start_address;
 uint32_t end_address;
-uint32_t firmware_lenght;
-uint16_t firmeware_crc;
+uint32_t firmware_length;
+uint16_t firmware_crc;
 
 uint32_t start_default_task_delay = 200;
 
 uint8_t test_data1;
+
+
+
+uint8_t temp_id_high;
+uint8_t temp_id_low;
+
+uint8_t temp_ip1;
+uint8_t temp_ip2;
+uint8_t temp_ip3;
+uint8_t temp_ip4;
+
+uint8_t temp_port_high;
+uint8_t temp_port_low;
+
+extern control_register_struct control_registers;
 
 
 /* USER CODE END PV */
@@ -221,21 +236,21 @@ int main(void)
 
 
 
-	fm25v02_write(2*START_ADDRESS_FIRMWARE_2_REG, 0x00);
-	fm25v02_write(2*START_ADDRESS_FIRMWARE_2_REG+1, 0x08);
-	bootloader_registers.start_address_firmware_2_reg = 0x0008;
+	//fm25v02_write(2*START_ADDRESS_FIRMWARE_2_REG, 0x00);
+	//fm25v02_write(2*START_ADDRESS_FIRMWARE_2_REG+1, 0x08);
+	//bootloader_registers.start_address_firmware_2_reg = 0x0008;
 
-	fm25v02_write(2*START_ADDRESS_FIRMWARE_3_REG, 0x00);
-	fm25v02_write(2*START_ADDRESS_FIRMWARE_3_REG+1, 0x01);
-	bootloader_registers.start_address_firmware_3_reg = 0x0001;
+	//fm25v02_write(2*START_ADDRESS_FIRMWARE_3_REG, 0x00);
+	//fm25v02_write(2*START_ADDRESS_FIRMWARE_3_REG+1, 0x01);
+	//bootloader_registers.start_address_firmware_3_reg = 0x0001;
 
-	fm25v02_write(2*START_ADDRESS_FIRMWARE_HIGH_REG, 0x00);
-	fm25v02_write(2*START_ADDRESS_FIRMWARE_HIGH_REG+1, 0x00);
-	bootloader_registers.start_address_firmware_high_reg = 0x0000;
+	//fm25v02_write(2*START_ADDRESS_FIRMWARE_HIGH_REG, 0x00);
+	//fm25v02_write(2*START_ADDRESS_FIRMWARE_HIGH_REG+1, 0x00);
+	//bootloader_registers.start_address_firmware_high_reg = 0x0000;
 
-	fm25v02_write(2*START_ADDRESS_FIRMWARE_LOW_REG, 0x00);
-	fm25v02_write(2*START_ADDRESS_FIRMWARE_LOW_REG+1, 0x00);
-	bootloader_registers.start_address_firmware_low_reg = 0x0000;
+	//fm25v02_write(2*START_ADDRESS_FIRMWARE_LOW_REG, 0x00);
+	//fm25v02_write(2*START_ADDRESS_FIRMWARE_LOW_REG+1, 0x00);
+	//bootloader_registers.start_address_firmware_low_reg = 0x0000;
 
 
 
@@ -297,7 +312,57 @@ int main(void)
 
 	//fm25v02_write(271, 0x00);
 
+	/*
+	fm25v02_read(256, &test_data1); // вычитываем из FRAM памяти регистр старой версии загрузчика
 
+	if( test_data1 !=0 ) // если этот регистр не равен 0, то вычитываем старые параметры ID устройства, IP, номер порта и переписываем их в регистры новой прошивки, затем выставляем значение регистра в 0
+	{
+		fm25v02_read(4267, &temp_id_high);
+		fm25v02_read(4268, &temp_id_low);
+
+		fm25v02_read(4271, &temp_ip1);
+		fm25v02_read(4272, &temp_ip2);
+		fm25v02_read(4273, &temp_ip3);
+		fm25v02_read(4274, &temp_ip4);
+
+		fm25v02_read(4275, &temp_port_high);
+		fm25v02_read(4276, &temp_port_low);
+
+		fm25v02_write(2*ID_HIGH_REG, 0);
+		fm25v02_write(2*ID_HIGH_REG+1, temp_id_high);
+		control_registers.id_high_reg = temp_id_high;
+
+		fm25v02_write(2*ID_LOW_REG, 0);
+		fm25v02_write(2*ID_LOW_REG+1, temp_id_low);
+		control_registers.id_low_reg = temp_id_low;
+
+		fm25v02_write(2*IP_1_REG, 0);
+		fm25v02_write(2*IP_1_REG+1, temp_ip1);
+		control_registers.ip1_reg = temp_ip1;
+
+		fm25v02_write(2*IP_2_REG, 0);
+		fm25v02_write(2*IP_2_REG+1, temp_ip2);
+		control_registers.ip2_reg = temp_ip2;
+
+		fm25v02_write(2*IP_3_REG, 0);
+		fm25v02_write(2*IP_3_REG+1, temp_ip3);
+		control_registers.ip3_reg = temp_ip3;
+
+		fm25v02_write(2*IP_4_REG, 0);
+		fm25v02_write(2*IP_4_REG+1, temp_ip4);
+		control_registers.ip4_reg = temp_ip4;
+
+		fm25v02_write(2*PORT_HIGH_REG, 0);
+		fm25v02_write(2*PORT_HIGH_REG+1, temp_port_high);
+		control_registers.port_high_reg = temp_port_high;
+
+		fm25v02_write(2*PORT_LOW_REG, 0);
+		fm25v02_write(2*PORT_LOW_REG+1, temp_port_low);
+		control_registers.port_low_reg = temp_port_low;
+
+		fm25v02_write(256, 0); // выставляем значение регистра в 0
+	}
+	*/
 
 
 
@@ -305,18 +370,28 @@ int main(void)
   	read_bootloader_registers_no_rtos(); // читаем ригистры бутлоадера до запуска операционной системы
 
 
-	start_address = ((((uint32_t)(bootloader_registers.start_address_firmware_2_reg))<<24)&0xFF000000) | ((((uint32_t)(bootloader_registers.start_address_firmware_3_reg))<<16)&0x00FF0000) | ((((uint32_t)(bootloader_registers.start_address_firmware_high_reg))<<8)&0x0000FF00) | (((uint32_t)(bootloader_registers.start_address_firmware_low_reg))&0x000000FF);
+	start_address = ((((uint32_t)(bootloader_registers.start_address_firmware_high_reg))<<24)&0xFF000000) | ((((uint32_t)(bootloader_registers.start_address_firmware_2_reg))<<16)&0x00FF0000) | ((((uint32_t)(bootloader_registers.start_address_firmware_3_reg))<<8)&0x0000FF00) | (((uint32_t)(bootloader_registers.start_address_firmware_low_reg))&0x000000FF);
 
 	end_address = ((((uint32_t)(bootloader_registers.end_address_firmware_2_reg))<<24)&0xFF000000) | ((((uint32_t)(bootloader_registers.end_address_firmware_3_reg))<<16)&0x00FF0000) | ((((uint32_t)(bootloader_registers.end_address_firmware_high_reg))<<8)&0x0000FF00) | (((uint32_t)(bootloader_registers.end_address_firmware_low_reg))&0x000000FF);
 
-	firmware_lenght = end_address - start_address + 1;
+	//end_address = 0x08029EEB;
 
-	firmeware_crc = (((bootloader_registers.crc_firmware_low_reg)<<8)&0xFF00) | ((bootloader_registers.crc_firmware_high_reg)&0x00FF);
+	firmware_length = end_address - start_address + 1;
 
-	calculating_firmware_crc = CRC16((unsigned char*)start_address, firmware_lenght);
+	firmware_crc = (((bootloader_registers.crc_firmware_low_reg)<<8)&0xFF00) | ((bootloader_registers.crc_firmware_high_reg)&0x00FF);
+
+	if( (start_address >= 0x08000000) && (start_address <= 0x080FFFFF) && ((start_address + firmware_length) <= 0x080FFFFF) && (firmware_length <= 0xFFFFF) ) // стартовый адресс для расчета контрольной суммы должен входить в диапазон основной памяти контроллера, длина прошивки не должна превышать длину памяти программ контроллера иначе при чтении будет хардфолт
+	{
+		calculating_firmware_crc = CRC16((unsigned char*)start_address, firmware_length);
+	}
+	else
+	{
+		calculating_firmware_crc = 0;
+	}
 
 
-	if( firmeware_crc == calculating_firmware_crc) // если рассчетная контрольная сумма прошивки совпадает с указанной
+
+	if( (firmware_crc == calculating_firmware_crc) && (firmware_crc != 0) ) // если рассчетная контрольная сумма прошивки совпадает с указанной и не равна 0
 	{
 
 
@@ -339,6 +414,12 @@ int main(void)
 
 
 	}
+
+	//----тест, потом удалить
+	//fm25v02_write(2*FIRMWARE_CORRECTNESS_REG, 0x00); // записываем в регистры и переменную корректность прошивки
+	//fm25v02_write(2*FIRMWARE_CORRECTNESS_REG+1, 0x01);
+	//bootloader_registers.firmware_correctness_reg = 0x0001;
+	//-----------------------
 
 
   	if( bootloader_registers.working_mode_reg == 0 ) // если включен нормальный режим работы
@@ -390,6 +471,7 @@ int main(void)
 
   				HAL_Delay(100);
 
+  				osMutexWait(Fm25v02MutexHandle, osWaitForever); // ждем освобождение мьютекса записи в память
   				NVIC_SystemReset();
 
   			}
@@ -826,6 +908,7 @@ void Callback_AT_Timer(void const * argument)
 
 void Callback_Ring_Center_Timer(void const * argument)
 {
+	osMutexWait(Fm25v02MutexHandle, osWaitForever); // ждем освобождение мьютекса записи в память
 	NVIC_SystemReset();
 }
 

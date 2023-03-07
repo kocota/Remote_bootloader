@@ -69,7 +69,7 @@ void ThreadModbusPacketTask(void const * argument)
 
 				if( modbus_address == VERSION_REG ) // если запрашивается адрес версии прошивки обновляем таймер перезагрузки
 				{
-					osTimerStart(Ring_Center_TimerHandle, 60000);
+					osTimerStart(Ring_Center_TimerHandle, 120000); // поправил время для таймера перезагрузки
 				}
 
 
@@ -155,7 +155,7 @@ void ThreadModbusPacketTask(void const * argument)
 
 				}
 
-				osTimerStart(Ring_Center_TimerHandle, 60000);
+				osTimerStart(Ring_Center_TimerHandle, 120000); // поправил время для таймера перезагрузки
 
 
 			break;

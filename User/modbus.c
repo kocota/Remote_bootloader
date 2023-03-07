@@ -282,81 +282,81 @@ void read_status_registers(void)
 	fm25v02_read(2*CE_303_TOTAL_POWER_M_REG+1, &status_reg_temp_l);
 	status_registers.ce303_total_power_m_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_TARIF1_POWER_H_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_TARIF1_POWER_H_REG+1, &status_reg_temp_l);
-	status_registers.ce303_tarif1_power_h_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_TARIF1_POWER_H_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_TARIF1_POWER_H_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_tarif1_power_h_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_TARIF1_POWER_L_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_TARIF1_POWER_L_REG+1, &status_reg_temp_l);
-	status_registers.ce303_tarif1_power_l_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_TARIF1_POWER_L_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_TARIF1_POWER_L_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_tarif1_power_l_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_TARIF1_POWER_MIL_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_TARIF1_POWER_MIL_REG+1, &status_reg_temp_l);
-	status_registers.ce303_tarif1_power_mil_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_TARIF1_POWER_MIL_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_TARIF1_POWER_MIL_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_tarif1_power_mil_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_TARIF2_POWER_H_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_TARIF2_POWER_H_REG+1, &status_reg_temp_l);
-	status_registers.ce303_tarif2_power_h_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_TARIF2_POWER_H_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_TARIF2_POWER_H_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_tarif2_power_h_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_TARIF2_POWER_L_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_TARIF2_POWER_L_REG+1, &status_reg_temp_l);
-	status_registers.ce303_tarif2_power_l_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_TARIF2_POWER_L_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_TARIF2_POWER_L_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_tarif2_power_l_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_TARIF2_POWER_MIL_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_TARIF2_POWER_MIL_REG+1, &status_reg_temp_l);
-	status_registers.ce303_tarif2_power_mil_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_TARIF2_POWER_MIL_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_TARIF2_POWER_MIL_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_tarif2_power_mil_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_TARIF3_POWER_H_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_TARIF3_POWER_H_REG+1, &status_reg_temp_l);
-	status_registers.ce303_tarif3_power_h_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_TARIF3_POWER_H_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_TARIF3_POWER_H_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_tarif3_power_h_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_TARIF3_POWER_L_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_TARIF3_POWER_L_REG+1, &status_reg_temp_l);
-	status_registers.ce303_tarif3_power_l_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_TARIF3_POWER_L_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_TARIF3_POWER_L_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_tarif3_power_l_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_TARIF3_POWER_MIL_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_TARIF3_POWER_MIL_REG+1, &status_reg_temp_l);
-	status_registers.ce303_tarif3_power_mil_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_TARIF3_POWER_MIL_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_TARIF3_POWER_MIL_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_tarif3_power_mil_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_TARIF4_POWER_H_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_TARIF4_POWER_H_REG+1, &status_reg_temp_l);
-	status_registers.ce303_tarif4_power_h_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_TARIF4_POWER_H_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_TARIF4_POWER_H_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_tarif4_power_h_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_TARIF4_POWER_L_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_TARIF4_POWER_L_REG+1, &status_reg_temp_l);
-	status_registers.ce303_tarif4_power_l_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_TARIF4_POWER_L_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_TARIF4_POWER_L_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_tarif4_power_l_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_TARIF4_POWER_MIL_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_TARIF4_POWER_MIL_REG+1, &status_reg_temp_l);
-	status_registers.ce303_tarif4_power_mil_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_TARIF4_POWER_MIL_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_TARIF4_POWER_MIL_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_tarif4_power_mil_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_TARIF5_POWER_H_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_TARIF5_POWER_H_REG+1, &status_reg_temp_l);
-	status_registers.ce303_tarif5_power_h_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_TARIF5_POWER_H_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_TARIF5_POWER_H_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_tarif5_power_h_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_TARIF5_POWER_L_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_TARIF5_POWER_L_REG+1, &status_reg_temp_l);
-	status_registers.ce303_tarif5_power_l_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_TARIF5_POWER_L_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_TARIF5_POWER_L_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_tarif5_power_l_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_TARIF5_POWER_MIL_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_TARIF5_POWER_MIL_REG+1, &status_reg_temp_l);
-	status_registers.ce303_tarif5_power_mil_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_TARIF5_POWER_MIL_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_TARIF5_POWER_MIL_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_tarif5_power_mil_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
 	fm25v02_read(2*SIGNAL_LEVEL_REG, &status_reg_temp_h);
 	fm25v02_read(2*SIGNAL_LEVEL_REG+1, &status_reg_temp_l);
 	status_registers.signal_level_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*ADVANCED_LOOP_REG, &status_reg_temp_h);
-	fm25v02_read(2*ADVANCED_LOOP_REG+1, &status_reg_temp_l);
-	status_registers.advanced_loop_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*ADVANCED_LOOP_REG, &status_reg_temp_h);
+	//fm25v02_read(2*ADVANCED_LOOP_REG+1, &status_reg_temp_l);
+	//status_registers.advanced_loop_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*ADDITIONAL_INPUT_REG1, &status_reg_temp_h);
-	fm25v02_read(2*ADDITIONAL_INPUT_REG1+1, &status_reg_temp_l);
-	status_registers.additional_input_reg1 = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*ADDITIONAL_INPUT_REG1, &status_reg_temp_h);
+	//fm25v02_read(2*ADDITIONAL_INPUT_REG1+1, &status_reg_temp_l);
+	//status_registers.additional_input_reg1 = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*ADDITIONAL_INPUT_REG2, &status_reg_temp_h);
-	fm25v02_read(2*ADDITIONAL_INPUT_REG2+1, &status_reg_temp_l);
-	status_registers.additional_input_reg2 = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*ADDITIONAL_INPUT_REG2, &status_reg_temp_h);
+	//fm25v02_read(2*ADDITIONAL_INPUT_REG2+1, &status_reg_temp_l);
+	//status_registers.additional_input_reg2 = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
 	fm25v02_read(2*ICCID_NUMBER_REG1, &status_reg_temp_h);
 	fm25v02_read(2*ICCID_NUMBER_REG1+1, &status_reg_temp_l);

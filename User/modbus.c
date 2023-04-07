@@ -130,157 +130,157 @@ void read_status_registers(void)
 	fm25v02_read(2*IBUTTON_COMPLETE_7_REG+1, &status_reg_temp_l);
 	status_registers.ibutton_complite_7_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_ERROR_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_ERROR_REG+1, &status_reg_temp_l);
-	status_registers.ce303_error_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_ERROR_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_ERROR_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_error_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_CURRENT_A_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_CURRENT_A_REG+1, &status_reg_temp_l);
-	status_registers.ce303_current_a_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_CURRENT_A_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_CURRENT_A_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_current_a_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_CURRENT_B_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_CURRENT_B_REG+1, &status_reg_temp_l);
-	status_registers.ce303_current_b_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_CURRENT_B_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_CURRENT_B_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_current_b_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_CURRENT_C_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_CURRENT_C_REG+1, &status_reg_temp_l);
-	status_registers.ce303_current_c_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_CURRENT_C_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_CURRENT_C_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_current_c_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_CURRENT_MIL_A_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_CURRENT_MIL_A_REG+1, &status_reg_temp_l);
-	status_registers.ce303_current_mil_a_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_CURRENT_MIL_A_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_CURRENT_MIL_A_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_current_mil_a_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_CURRENT_MIL_B_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_CURRENT_MIL_B_REG+1, &status_reg_temp_l);
-	status_registers.ce303_current_mil_b_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_CURRENT_MIL_B_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_CURRENT_MIL_B_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_current_mil_b_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_CURRENT_MIL_C_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_CURRENT_MIL_C_REG+1, &status_reg_temp_l);
-	status_registers.ce303_current_mil_c_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_CURRENT_MIL_C_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_CURRENT_MIL_C_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_current_mil_c_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_VOLT_A_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_VOLT_A_REG+1, &status_reg_temp_l);
-	status_registers.ce303_volt_a_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_VOLT_A_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_VOLT_A_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_volt_a_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_VOLT_B_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_VOLT_B_REG+1, &status_reg_temp_l);
-	status_registers.ce303_volt_b_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_VOLT_B_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_VOLT_B_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_volt_b_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_VOLT_C_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_VOLT_C_REG+1, &status_reg_temp_l);
-	status_registers.ce303_volt_c_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_VOLT_C_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_VOLT_C_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_volt_c_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_VOLT_MIL_A_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_VOLT_MIL_A_REG+1, &status_reg_temp_l);
-	status_registers.ce303_volt_mil_a_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_VOLT_MIL_A_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_VOLT_MIL_A_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_volt_mil_a_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_VOLT_MIL_B_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_VOLT_MIL_B_REG+1, &status_reg_temp_l);
-	status_registers.ce303_volt_mil_b_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_VOLT_MIL_B_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_VOLT_MIL_B_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_volt_mil_b_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_VOLT_MIL_C_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_VOLT_MIL_C_REG+1, &status_reg_temp_l);
-	status_registers.ce303_volt_mil_c_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_VOLT_MIL_C_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_VOLT_MIL_C_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_volt_mil_c_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_POWER_A_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_POWER_A_REG+1, &status_reg_temp_l);
-	status_registers.ce303_power_a_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_POWER_A_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_POWER_A_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_power_a_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_POWER_B_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_POWER_B_REG+1, &status_reg_temp_l);
-	status_registers.ce303_power_b_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_POWER_B_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_POWER_B_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_power_b_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_POWER_C_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_POWER_C_REG+1, &status_reg_temp_l);
-	status_registers.ce303_power_c_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_POWER_C_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_POWER_C_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_power_c_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_POWER_MIL_A_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_POWER_MIL_A_REG+1, &status_reg_temp_l);
-	status_registers.ce303_power_mil_a_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_POWER_MIL_A_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_POWER_MIL_A_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_power_mil_a_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_POWER_MIL_B_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_POWER_MIL_B_REG+1, &status_reg_temp_l);
-	status_registers.ce303_power_mil_b_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_POWER_MIL_B_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_POWER_MIL_B_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_power_mil_b_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_POWER_MIL_C_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_POWER_MIL_C_REG+1, &status_reg_temp_l);
-	status_registers.ce303_power_mil_c_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_POWER_MIL_C_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_POWER_MIL_C_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_power_mil_c_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*LIGHTING_STATUS_REG, &status_reg_temp_h);
-	fm25v02_read(2*LIGHTING_STATUS_REG+1, &status_reg_temp_l);
-	status_registers.lighting_status_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*LIGHTING_STATUS_REG, &status_reg_temp_h);
+	//fm25v02_read(2*LIGHTING_STATUS_REG+1, &status_reg_temp_l);
+	//status_registers.lighting_status_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*LIGHTING_ALARM_REG, &status_reg_temp_h);
-	fm25v02_read(2*LIGHTING_ALARM_REG+1, &status_reg_temp_l);
-	status_registers.lighting_alarm_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*LIGHTING_ALARM_REG, &status_reg_temp_h);
+	//fm25v02_read(2*LIGHTING_ALARM_REG+1, &status_reg_temp_l);
+	//status_registers.lighting_alarm_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*MONTH_LIGHTING_OFF_REG, &status_reg_temp_h);
-	fm25v02_read(2*MONTH_LIGHTING_OFF_REG+1, &status_reg_temp_l);
-	status_registers.month_lighting_off_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*MONTH_LIGHTING_OFF_REG, &status_reg_temp_h);
+	//fm25v02_read(2*MONTH_LIGHTING_OFF_REG+1, &status_reg_temp_l);
+	//status_registers.month_lighting_off_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*DAY_LIGHTING_OFF_REG, &status_reg_temp_h);
-	fm25v02_read(2*DAY_LIGHTING_OFF_REG+1, &status_reg_temp_l);
-	status_registers.day_lighting_off_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*DAY_LIGHTING_OFF_REG, &status_reg_temp_h);
+	//fm25v02_read(2*DAY_LIGHTING_OFF_REG+1, &status_reg_temp_l);
+	//status_registers.day_lighting_off_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*HOUR_LIGHTING_OFF_REG, &status_reg_temp_h);
-	fm25v02_read(2*HOUR_LIGHTING_OFF_REG+1, &status_reg_temp_l);
-	status_registers.hour_lighting_off_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*HOUR_LIGHTING_OFF_REG, &status_reg_temp_h);
+	//fm25v02_read(2*HOUR_LIGHTING_OFF_REG+1, &status_reg_temp_l);
+	//status_registers.hour_lighting_off_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*MINUTE_LIGHTING_OFF_REG, &status_reg_temp_h);
-	fm25v02_read(2*MINUTE_LIGHTING_OFF_REG+1, &status_reg_temp_l);
-	status_registers.minute_lighting_off_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*MINUTE_LIGHTING_OFF_REG, &status_reg_temp_h);
+	//fm25v02_read(2*MINUTE_LIGHTING_OFF_REG+1, &status_reg_temp_l);
+	//status_registers.minute_lighting_off_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*MONTH_LIGHTING_ON_REG, &status_reg_temp_h);
-	fm25v02_read(2*MONTH_LIGHTING_ON_REG+1, &status_reg_temp_l);
-	status_registers.month_lighting_on_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*MONTH_LIGHTING_ON_REG, &status_reg_temp_h);
+	//fm25v02_read(2*MONTH_LIGHTING_ON_REG+1, &status_reg_temp_l);
+	//status_registers.month_lighting_on_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*DAY_LIGHTING_ON_REG, &status_reg_temp_h);
-	fm25v02_read(2*DAY_LIGHTING_ON_REG+1, &status_reg_temp_l);
-	status_registers.day_lighting_on_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*DAY_LIGHTING_ON_REG, &status_reg_temp_h);
+	//fm25v02_read(2*DAY_LIGHTING_ON_REG+1, &status_reg_temp_l);
+	//status_registers.day_lighting_on_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*HOUR_LIGHTING_ON_REG, &status_reg_temp_h);
-	fm25v02_read(2*HOUR_LIGHTING_ON_REG+1, &status_reg_temp_l);
-	status_registers.hour_lighting_on_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*HOUR_LIGHTING_ON_REG, &status_reg_temp_h);
+	//fm25v02_read(2*HOUR_LIGHTING_ON_REG+1, &status_reg_temp_l);
+	//status_registers.hour_lighting_on_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*MINUTE_LIGHTING_ON_REG, &status_reg_temp_h);
-	fm25v02_read(2*MINUTE_LIGHTING_ON_REG+1, &status_reg_temp_l);
-	status_registers.minute_lighting_on_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*MINUTE_LIGHTING_ON_REG, &status_reg_temp_h);
+	//fm25v02_read(2*MINUTE_LIGHTING_ON_REG+1, &status_reg_temp_l);
+	//status_registers.minute_lighting_on_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CURRENT_PHASE_A_REG, &status_reg_temp_h);
-	fm25v02_read(2*CURRENT_PHASE_A_REG+1, &status_reg_temp_l);
-	status_registers.current_phase_a_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CURRENT_PHASE_A_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CURRENT_PHASE_A_REG+1, &status_reg_temp_l);
+	//status_registers.current_phase_a_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CURRENT_PHASE_B_REG, &status_reg_temp_h);
-	fm25v02_read(2*CURRENT_PHASE_B_REG+1, &status_reg_temp_l);
-	status_registers.current_phase_b_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CURRENT_PHASE_B_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CURRENT_PHASE_B_REG+1, &status_reg_temp_l);
+	//status_registers.current_phase_b_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CURRENT_PHASE_C_REG, &status_reg_temp_h);
-	fm25v02_read(2*CURRENT_PHASE_C_REG+1, &status_reg_temp_l);
-	status_registers.current_phase_c_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CURRENT_PHASE_C_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CURRENT_PHASE_C_REG+1, &status_reg_temp_l);
+	//status_registers.current_phase_c_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CURRENT_VOLTAGE_A_REG, &status_reg_temp_h);
-	fm25v02_read(2*CURRENT_VOLTAGE_A_REG+1, &status_reg_temp_l);
-	status_registers.current_voltage_a_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CURRENT_VOLTAGE_A_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CURRENT_VOLTAGE_A_REG+1, &status_reg_temp_l);
+	//status_registers.current_voltage_a_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CURRENT_VOLTAGE_B_REG, &status_reg_temp_h);
-	fm25v02_read(2*CURRENT_VOLTAGE_B_REG+1, &status_reg_temp_l);
-	status_registers.current_voltage_b_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CURRENT_VOLTAGE_B_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CURRENT_VOLTAGE_B_REG+1, &status_reg_temp_l);
+	//status_registers.current_voltage_b_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CURRENT_VOLTAGE_C_REG, &status_reg_temp_h);
-	fm25v02_read(2*CURRENT_VOLTAGE_C_REG+1, &status_reg_temp_l);
-	status_registers.current_voltage_c_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CURRENT_VOLTAGE_C_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CURRENT_VOLTAGE_C_REG+1, &status_reg_temp_l);
+	//status_registers.current_voltage_c_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_TOTAL_POWER_H_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_TOTAL_POWER_H_REG+1, &status_reg_temp_l);
-	status_registers.ce303_total_power_h_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_TOTAL_POWER_H_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_TOTAL_POWER_H_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_total_power_h_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_TOTAL_POWER_L_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_TOTAL_POWER_L_REG+1, &status_reg_temp_l);
-	status_registers.ce303_total_power_l_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_TOTAL_POWER_L_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_TOTAL_POWER_L_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_total_power_l_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CE_303_TOTAL_POWER_M_REG, &status_reg_temp_h);
-	fm25v02_read(2*CE_303_TOTAL_POWER_M_REG+1, &status_reg_temp_l);
-	status_registers.ce303_total_power_m_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CE_303_TOTAL_POWER_M_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CE_303_TOTAL_POWER_M_REG+1, &status_reg_temp_l);
+	//status_registers.ce303_total_power_m_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
 	//fm25v02_read(2*CE_303_TARIF1_POWER_H_REG, &status_reg_temp_h);
 	//fm25v02_read(2*CE_303_TARIF1_POWER_H_REG+1, &status_reg_temp_l);
@@ -558,41 +558,41 @@ void read_control_registers(void)
 	fm25v02_read(2*GPRS_CALL_REG+1, &status_reg_temp_l);
 	control_registers.gprs_call_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*MUTE_REG, &status_reg_temp_h);
-	fm25v02_read(2*MUTE_REG+1, &status_reg_temp_l);
-	control_registers.mute_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*MUTE_REG, &status_reg_temp_h);
+	//fm25v02_read(2*MUTE_REG+1, &status_reg_temp_l);
+	//control_registers.mute_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*LIGHT_CONTROL_REG, &status_reg_temp_h);
-	fm25v02_read(2*LIGHT_CONTROL_REG+1, &status_reg_temp_l);
-	control_registers.light_control_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*LIGHT_CONTROL_REG, &status_reg_temp_h);
+	//fm25v02_read(2*LIGHT_CONTROL_REG+1, &status_reg_temp_l);
+	//control_registers.light_control_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*LIGHTING_ALARM_RESET_REG, &status_reg_temp_h);
-	fm25v02_read(2*LIGHTING_ALARM_RESET_REG+1, &status_reg_temp_l);
-	control_registers.lighting_alarm_reset_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*LIGHTING_ALARM_RESET_REG, &status_reg_temp_h);
+	//fm25v02_read(2*LIGHTING_ALARM_RESET_REG+1, &status_reg_temp_l);
+	//control_registers.lighting_alarm_reset_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*CURRENT_MEASUREMENT_ACCURACY_REG, &status_reg_temp_h);
-	fm25v02_read(2*CURRENT_MEASUREMENT_ACCURACY_REG+1, &status_reg_temp_l);
-	control_registers.current_measurement_accuracy_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*CURRENT_MEASUREMENT_ACCURACY_REG, &status_reg_temp_h);
+	//fm25v02_read(2*CURRENT_MEASUREMENT_ACCURACY_REG+1, &status_reg_temp_l);
+	//control_registers.current_measurement_accuracy_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*MAX_CURRENT_PHASE_A, &status_reg_temp_h);
-	fm25v02_read(2*MAX_CURRENT_PHASE_A+1, &status_reg_temp_l);
-	control_registers.max_current_phase_a = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*MAX_CURRENT_PHASE_A, &status_reg_temp_h);
+	//fm25v02_read(2*MAX_CURRENT_PHASE_A+1, &status_reg_temp_l);
+	//control_registers.max_current_phase_a = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*MAX_CURRENT_PHASE_B, &status_reg_temp_h);
-	fm25v02_read(2*MAX_CURRENT_PHASE_B+1, &status_reg_temp_l);
-	control_registers.max_current_phase_b = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*MAX_CURRENT_PHASE_B, &status_reg_temp_h);
+	//fm25v02_read(2*MAX_CURRENT_PHASE_B+1, &status_reg_temp_l);
+	//control_registers.max_current_phase_b = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*MAX_CURRENT_PHASE_C, &status_reg_temp_h);
-	fm25v02_read(2*MAX_CURRENT_PHASE_C+1, &status_reg_temp_l);
-	control_registers.max_current_phase_c = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*MAX_CURRENT_PHASE_C, &status_reg_temp_h);
+	//fm25v02_read(2*MAX_CURRENT_PHASE_C+1, &status_reg_temp_l);
+	//control_registers.max_current_phase_c = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*LIGHTING_SWITCHING_REG, &status_reg_temp_h);
-	fm25v02_read(2*LIGHTING_SWITCHING_REG+1, &status_reg_temp_l);
-	control_registers.lighting_switching_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*LIGHTING_SWITCHING_REG, &status_reg_temp_h);
+	//fm25v02_read(2*LIGHTING_SWITCHING_REG+1, &status_reg_temp_l);
+	//control_registers.lighting_switching_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
-	fm25v02_read(2*ALARM_SWITCHING_REG, &status_reg_temp_h);
-	fm25v02_read(2*ALARM_SWITCHING_REG+1, &status_reg_temp_l);
-	control_registers.alarm_switching_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
+	//fm25v02_read(2*ALARM_SWITCHING_REG, &status_reg_temp_h);
+	//fm25v02_read(2*ALARM_SWITCHING_REG+1, &status_reg_temp_l);
+	//control_registers.alarm_switching_reg = (((uint16_t)status_reg_temp_h)<<8)|status_reg_temp_l;
 
 	osMutexRelease(Fm25v02MutexHandle);
 

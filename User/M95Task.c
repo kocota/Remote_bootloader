@@ -46,10 +46,10 @@ void ThreadM95Task(void const * argument)
 	osMutexWait(Fm25v02MutexHandle, osWaitForever);
 
 	fm25v02_write(2*VERSION_REG, 0); // записываем версию прошивки для бутлоадера старший байт
-	fm25v02_write(2*VERSION_REG+1, 254); // записываем версию прошивки для бутлоадера младший байт
+	fm25v02_write(2*VERSION_REG+1, 255); // записываем версию прошивки для бутлоадера младший байт
 
 	fm25v02_write(2*BOOTLOADER_VERSION_REG, 0); // записываем версию прошивки бутлоадера старший байт
-	fm25v02_write(2*BOOTLOADER_VERSION_REG+1, 254); // записываем версию прошивки бутлоадера младший байт
+	fm25v02_write(2*BOOTLOADER_VERSION_REG+1, 255); // записываем версию прошивки бутлоадера младший байт
 
 	osMutexRelease(Fm25v02MutexHandle);
 

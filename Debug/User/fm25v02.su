@@ -1,0 +1,9 @@
+fm25v02.c:7:6:fm25v02_wren	16	static
+fm25v02.c:15:6:fm25v02_wrdi	16	static
+fm25v02.c:23:6:fm25v02_sleep	16	static
+fm25v02.c:31:9:fm25v02_rdsr	16	static
+fm25v02.c:44:17:fm25v02_rdid	40	static
+fm25v02.c:62:6:fm25v02_read	24	static
+fm25v02.c:75:6:fm25v02_write	24	static
+fm25v02.c:91:9:fm25v02_fast_write	24	static
+fm25v02.c:100:19:fm25v02_fast_read	24	static

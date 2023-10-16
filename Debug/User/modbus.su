@@ -1,0 +1,6 @@
+modbus.c:14:6:read_status_registers	16	static
+modbus.c:398:6:read_control_registers	16	static
+modbus.c:606:6:read_bootloader_registers	16	static
+modbus.c:768:6:read_bootloader_registers_no_rtos	16	static
+modbus.c:926:6:read_change_boot_registers	16	static
+modbus.c:1047:15:CRC16	24	static

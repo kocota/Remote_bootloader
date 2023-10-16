@@ -1,0 +1,16 @@
+core_cm4.h:1939:34:__NVIC_SystemReset	4	static,ignoring_inline_asm
+main.c:155:6:HAL_UART_TxCpltCallback	16	static
+main.c:163:6:HAL_UART_RxCpltCallback	16	static
+main.c:185:5:main	264	static,ignoring_inline_asm
+main.c:585:6:SystemClock_Config	88	static
+main.c:634:13:MX_IWDG_Init	8	static
+main.c:662:13:MX_RTC_Init	32	static
+main.c:725:13:MX_SPI2_Init	8	static
+main.c:763:13:MX_USART3_UART_Init	8	static
+main.c:794:13:MX_DMA_Init	16	static
+main.c:815:13:MX_GPIO_Init	64	static
+main.c:973:6:Callback_AT_Timer	16	static
+main.c:980:6:Callback_Ring_Center_Timer	16	static
+main.c:994:6:StartDefaultTask	16	static
+main.c:1017:6:HAL_TIM_PeriodElapsedCallback	16	static
+main.c:1034:6:Error_Handler	8	static

@@ -1,0 +1,5 @@
+ce303.c:22:6:meter_rx_buffer_clear	16	static
+ce303.c:30:6:ce303_voltage	32	static
+ce303.c:502:6:ce303_current	32	static
+ce303.c:987:6:ce303_power	32	static
+ce303.c:1472:6:ce303_tarif	32	static

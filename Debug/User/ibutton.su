@@ -1,0 +1,8 @@
+ibutton.c:15:15:calc_crc	24	static
+ibutton.c:33:9:write_0	16	static
+ibutton.c:49:9:write_1	16	static
+ibutton.c:65:19:ibutton_reset	16	static
+ibutton.c:88:19:ibutton_read_rom	48	static
+ibutton.c:203:19:ibutton_search_rom	48	static
+ibutton.c:260:19:ibutton_write_rom	32	static
+ibutton.c:299:19:ibutton_delete_rom	40	static
